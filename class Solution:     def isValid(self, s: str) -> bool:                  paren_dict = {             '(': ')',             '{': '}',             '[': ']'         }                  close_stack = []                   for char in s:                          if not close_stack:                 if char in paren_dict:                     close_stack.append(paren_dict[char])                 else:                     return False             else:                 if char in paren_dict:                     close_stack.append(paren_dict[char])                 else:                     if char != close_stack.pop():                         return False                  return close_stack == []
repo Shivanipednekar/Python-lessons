@@ -1,0 +1,28 @@
+#valid parenthesis
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        
+        paren_dict = {
+            '(': ')',
+            '{': '}',
+            '[': ']'
+        }
+        
+        close_stack = []
+         
+        for char in s:
+            
+            if not close_stack:
+                if char in paren_dict:
+                    close_stack.append(paren_dict[char])
+                else:
+                    return False
+            else:
+                if char in paren_dict:
+                    close_stack.append(paren_dict[char])
+                else:
+                    if char != close_stack.pop():
+                        return False
+        
+        return close_stack == []
